@@ -1,0 +1,24 @@
+<div class="card">
+  <h2>Listagem de clientes</h2>
+  <p-table [value]="clientes" selectionMode="single" [(selection)]="clienteSelecionado"
+    dataKey="id" (onRowSelect)="onRowSelect($event)">
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="id">Código <p-sortIcon field="id"></p-sortIcon>
+        </th>
+        <th pSortableColumn="nome">Nome <p-sortIcon field="nome"></p-sortIcon>
+        </th>
+        <th pSortableColumn="email">E-mail <p-sortIcon field="email"></p-sortIcon>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-cliente>
+      <tr [pSelectableRow]="cliente">
+        <td>{{cliente.id}}</td>
+        <td>{{cliente.nome}}</td>
+        <td>{{cliente.email}}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+<p>{{ clienteSelecionado | json }}</p>
