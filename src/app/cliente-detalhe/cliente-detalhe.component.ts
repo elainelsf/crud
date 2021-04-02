@@ -2,7 +2,7 @@ import { ClienteService } from './../cliente.service';
 import { Component, OnInit } from '@angular/core';
 import { Cliente } from '../cliente';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-cliente-detalhe',
@@ -16,12 +16,12 @@ export class ClienteDetalheComponent implements OnInit {
 
 
   mensagemErro = '';
-  cliente?: Cliente;
   id = '0';
 
-  meuForm = this.formBuilder.group(
-    {nome: ['', [Validators.required, Validators.minLength(3)]]}
-  );
+  meuForm = this.formBuilder.group({
+      nome: ['', [Validators.required, Validators.minLength(3)]],
+      email: ['', [Validators.required, Validators.email]]
+    });
 
   ngOnInit(): void {
     this.mensagemErro = '';
@@ -31,8 +31,7 @@ export class ClienteDetalheComponent implements OnInit {
         this.id = id;
         this.servico.getClienteById(id).subscribe({
           next: (cliente: Cliente) => {
-            this.cliente = cliente;
-            this.meuForm.value.nome = this.cliente.nome;
+            this.meuForm.patchValue(cliente);
           },
           error: (error: any) => {
             console.log(error);
@@ -49,7 +48,6 @@ export class ClienteDetalheComponent implements OnInit {
   }
 
   onAtualizar(): void {
-    console.log(this.meuForm.value);
     this.servico.updateCliente(this.id, this.meuForm.value).subscribe(
       retorno => this.router.navigate(['/clientes'])
     );
