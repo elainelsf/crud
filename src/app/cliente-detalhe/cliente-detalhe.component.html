@@ -1,1 +1,24 @@
-<p>cliente-detalhe works!</p>
+<p>{{ cliente | json }}</p>
+<p>{{ mensagemErro }}</p>
+<hr />
+<h2>Cadastro de clientes</h2>
+<form [formGroup]="meuForm" (ngSubmit)="onAtualizar()">
+  <table>
+    <tr>
+      <td>Nome:</td>
+      <td><input type="text" formControlName="nome" required /></td>
+    </tr>
+    <tr>
+      <td>E-mail:</td>
+      <td><input type="email" /></td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <button type="submit">Atualizar</button>&nbsp;
+        <button type="button" (click)="onCancelar()">Cancelar</button>
+      </td>
+    </tr>
+  </table>
+</form>
+
+<p>{{ meuForm.value | json }}</p>

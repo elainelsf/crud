@@ -11,6 +11,7 @@ import { ClienteDetalheComponent } from './cliente-detalhe/cliente-detalhe.compo
 
 
 import { TableModule } from 'primeng/table';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,8 @@ import { TableModule } from 'primeng/table';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     TableModule
   ],

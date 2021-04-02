@@ -1,7 +1,7 @@
 import { ClienteService } from './../cliente.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { of } from 'rxjs';
+import { Cliente } from './../cliente';
 
 @Component({
   selector: 'app-cliente-listagem',
@@ -9,8 +9,8 @@ import { of } from 'rxjs';
   styleUrls: ['./cliente-listagem.component.css'],
 })
 export class ClienteListagemComponent implements OnInit {
-  clientes = [];
-  clienteSelecionado?: any;
+  clientes: Cliente[] = [];
+  clienteSelecionado?: Cliente;
 
   constructor(private servico: ClienteService, private router: Router) { }
 
@@ -27,28 +27,7 @@ export class ClienteListagemComponent implements OnInit {
   }
 
   onRowSelect(event: any): void {
-    this.router.navigate(['/clientes-detalhe', this.clienteSelecionado.id]);
-  }
-
-  myMethod(): void {
-    // Create simple observable that emits three values
-    const myObservable = of(1, 2, 3);
-
-    // Create observer object
-    const myObserver = {
-      next: (x: any) => console.log('Observer got a next value: ' + x),
-      error: (err: any) => console.error('Observer got an error: ' + err),
-      complete: () => console.log('Observer got a complete notification'),
-    };
-
-    // Execute with the observer object
-    myObservable.subscribe(myObserver);
-
-    // Logs:
-    // Observer got a next value: 1
-    // Observer got a next value: 2
-    // Observer got a next value: 3
-    // Observer got a complete notification
+    this.router.navigate(['/clientes-detalhe', event.data.id]);
   }
 
 }

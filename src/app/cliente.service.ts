@@ -1,3 +1,4 @@
+import { Cliente } from './cliente';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -9,7 +10,15 @@ export class ClienteService {
 
   constructor(private http: HttpClient) { }
 
-  getClientes(): Observable<any>{
-    return this.http.get('http://localhost:3000/clientes');
+  getClientes(): Observable<Cliente[]>{
+    return this.http.get<Cliente[]>('http://localhost:3000/clientes');
+  }
+
+  getClienteById(id: string): Observable<Cliente>{
+    return this.http.get<Cliente>('http://localhost:3000/clientes/' + id);
+  }
+
+  updateCliente(id: string, cliente: any): Observable<Cliente>{
+    return this.http.put<Cliente>('http://localhost:3000/clientes/' + id, cliente);
   }
 }
