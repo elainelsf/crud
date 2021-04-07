@@ -21,4 +21,8 @@ export class ClienteService {
   updateCliente(id: string, cliente: any): Observable<Cliente>{
     return this.http.put<Cliente>('http://localhost:3000/clientes/' + id, cliente);
   }
+
+  deleteCliente(id: string): Observable<Cliente>{
+    return this.http.delete<Cliente>('http://localhost:3000/clientes/' + id);
+  }
 }

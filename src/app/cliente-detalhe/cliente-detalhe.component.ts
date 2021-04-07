@@ -53,6 +53,12 @@ export class ClienteDetalheComponent implements OnInit {
     );
   }
 
+  onExcluir(): void {
+    this.servico.deleteCliente(this.id).subscribe(
+      retorno => this.router.navigate(['/clientes'])
+    );
+  }
+
   onCancelar(): void {
     this.router.navigate(['/clientes']);
   }

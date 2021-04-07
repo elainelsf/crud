@@ -1,21 +1,22 @@
-<p>{{ mensagemErro }}</p>
-<hr />
 <h2>Cadastro de clientes</h2>
+
 <form [formGroup]="meuForm" (ngSubmit)="onAtualizar()">
-  <table>
-    <tr>
-      <td>Nome:</td>
-      <td><input type="text" formControlName="nome" required /></td>
-    </tr>
-    <tr>
-      <td>E-mail:</td>
-      <td><input type="email" formControlName="email" required /></td>
-    </tr>
-    <tr>
-      <td colspan="2">
-        <button pButton type="submit" label="Atualizar"></button>&nbsp;
-        <button pButton type="button" label="Cancelar" class="p-button-secondary" (click)="onCancelar()"></button>
-      </td>
-    </tr>
-  </table>
+  <div class="card">
+    <div class="p-fluid">
+      <div class="p-field">
+        <label for="nome">Nome:</label>
+        <input pInputText id="nome" type="text" formControlName="nome" required />
+      </div>
+      <div class="p-field">
+        <label for="email">E-mail:</label>
+        <input pInputText id="email" type="email" formControlName="email" required />
+      </div>
+    </div>
+    <div>
+      <button pButton type="submit" label="Atualizar"></button>&nbsp;
+      <button pButton type="button" label="Cancelar" class="p-button-secondary" (click)="onCancelar()"></button>&nbsp;
+      <button pButton type="button" label="Apagar" class="p-button-danger" (click)="onExcluir()"></button>
+    </div>
+  </div>
 </form>
+<p>{{ mensagemErro }}</p>
