@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   { path: 'clientes', component: ClienteListagemComponent },
   { path: 'clientes-detalhe/:id', component: ClienteDetalheComponent },
+  { path: 'clientes-detalhe/new', component: ClienteDetalheComponent },
   { path: '', redirectTo: '/clientes', pathMatch: 'full'}
 ];
 

@@ -17,11 +17,12 @@ export class ClienteDetalheComponent implements OnInit {
 
   mensagemErro = '';
   id = '0';
+  isNew = false;
 
   meuForm = this.formBuilder.group({
-      nome: ['', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required, Validators.email]]
-    });
+    nome: ['', [Validators.required, Validators.minLength(3)]],
+    email: ['', [Validators.required, Validators.email]]
+  });
 
   ngOnInit(): void {
     this.mensagemErro = '';
@@ -29,26 +30,36 @@ export class ClienteDetalheComponent implements OnInit {
       (retorno: ParamMap) => {
         const id = retorno.get('id') || '0';
         this.id = id;
-        this.servico.getClienteById(id).subscribe({
-          next: (cliente: Cliente) => {
-            this.meuForm.patchValue(cliente);
-          },
-          error: (error: any) => {
-            console.log(error);
-            if (error.status === 404) {
-              this.mensagemErro = 'Erro: registro não encontrado';
-            } else {
-              this.mensagemErro = 'Erro desconhecido';
-            }
-          },
-          complete: () => console.log('Cliente carregado')
-        });
+        if (id === 'new') {
+          this.isNew = true;
+        } else {
+          this.servico.getClienteById(id).subscribe({
+            next: (cliente: Cliente) => {
+              this.meuForm.patchValue(cliente);
+            },
+            error: (error: any) => {
+              console.log(error);
+              if (error.status === 404) {
+                this.mensagemErro = 'Erro: registro não encontrado';
+              } else {
+                this.mensagemErro = 'Erro desconhecido';
+              }
+            },
+            complete: () => console.log('Cliente carregado')
+          });
+        }
       }
     );
   }
 
   onAtualizar(): void {
     this.servico.updateCliente(this.id, this.meuForm.value).subscribe(
+      retorno => this.router.navigate(['/clientes'])
+    );
+  }
+
+  onIncluir(): void {
+    this.servico.addCliente(this.meuForm.value).subscribe(
       retorno => this.router.navigate(['/clientes'])
     );
   }

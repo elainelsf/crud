@@ -30,4 +30,8 @@ export class ClienteListagemComponent implements OnInit {
     this.router.navigate(['/clientes-detalhe', event.data.id]);
   }
 
+  onNovo(event: any): void {
+    this.router.navigate(['/clientes-detalhe/new']);
+  }
+
 }

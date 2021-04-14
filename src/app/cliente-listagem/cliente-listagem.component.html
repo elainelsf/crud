@@ -1,5 +1,8 @@
 <div class="card">
   <h2>Listagem de clientes</h2>
+  <div>
+    <button pButton label="Novo" (click)="onNovo($event)"></button>&nbsp;
+  </div>
   <p-table [value]="clientes" selectionMode="single" [(selection)]="clienteSelecionado"
     dataKey="id" (onRowSelect)="onRowSelect($event)">
     <ng-template pTemplate="header">

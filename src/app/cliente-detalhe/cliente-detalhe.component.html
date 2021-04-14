@@ -4,18 +4,25 @@
   <div class="card">
     <div class="p-fluid">
       <div class="p-field">
-        <label for="nome">Nome:</label>
-        <input pInputText id="nome" type="text" formControlName="nome" required />
+        <p>
+          <label for="nome">Nome:</label>
+          <input pInputText id="nome" type="text" formControlName="nome" required />
+        </p>
       </div>
       <div class="p-field">
-        <label for="email">E-mail:</label>
-        <input pInputText id="email" type="email" formControlName="email" required />
+        <p>
+          <label for="email">E-mail:</label>
+          <input pInputText id="email" type="email" formControlName="email" required />
+        </p>
       </div>
     </div>
     <div>
-      <button pButton type="submit" label="Atualizar"></button>&nbsp;
-      <button pButton type="button" label="Cancelar" class="p-button-secondary" (click)="onCancelar()"></button>&nbsp;
-      <button pButton type="button" label="Apagar" class="p-button-danger" (click)="onExcluir()"></button>
+      <p>
+        <button *ngIf="!isNew" pButton type="submit" label="Atualizar" [disabled]="!meuForm.valid"></button>
+        <button *ngIf="isNew" pButton type="button" label="Novo" (click)="onIncluir()" [disabled]="!meuForm.valid"></button>&nbsp;
+        <button pButton type="button" label="Cancelar" class="p-button-secondary" (click)="onCancelar()"></button>&nbsp;
+        <button *ngIf="!isNew" pButton type="button" label="Apagar" class="p-button-danger" (click)="onExcluir()"></button>
+      </p>
     </div>
   </div>
 </form>
