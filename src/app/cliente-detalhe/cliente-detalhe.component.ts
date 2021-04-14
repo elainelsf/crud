@@ -2,7 +2,7 @@ import { ClienteService } from './../cliente.service';
 import { Component, OnInit } from '@angular/core';
 import { Cliente } from '../cliente';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-cliente-detalhe',
