@@ -14,7 +14,6 @@ export class ClienteDetalheComponent implements OnInit {
   constructor(private servico: ClienteService, private router: Router,
     private route: ActivatedRoute, private formBuilder: FormBuilder) { }
 
-
   mensagemErro = '';
   id = '0';
   isNew = false;
@@ -29,6 +28,7 @@ export class ClienteDetalheComponent implements OnInit {
     this.route.paramMap.subscribe(
       (retorno: ParamMap) => {
         const id = retorno.get('id') || '0';
+        console.log("id: \n" + this.id)
         this.id = id;
         if (id === 'new') {
           this.isNew = true;
@@ -53,12 +53,14 @@ export class ClienteDetalheComponent implements OnInit {
   }
 
   onAtualizar(): void {
+    console.log("4")
     this.servico.updateCliente(this.id, this.meuForm.value).subscribe(
       retorno => this.router.navigate(['/clientes'])
     );
   }
 
   onIncluir(): void {
+    console.log("3")
     this.servico.addCliente(this.meuForm.value).subscribe(
       retorno => this.router.navigate(['/clientes'])
     );

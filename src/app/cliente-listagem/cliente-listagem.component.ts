@@ -34,4 +34,18 @@ export class ClienteListagemComponent implements OnInit {
     this.router.navigate(['/clientes-detalhe/new']);
   }
 
+  onAtualizar(event: any): void {
+    this.router.navigate(['/clientes-detalhe']);
+  }
+
+  /*
+  onExcluir(): void {
+    this.servico.deleteCliente('1007').subscribe(
+      retorno => this.router.navigate(['/clientes'])
+    );
+  }
+*/
+  onCancelar(): void {
+    this.router.navigate(['/clientes']);
+  }
 }

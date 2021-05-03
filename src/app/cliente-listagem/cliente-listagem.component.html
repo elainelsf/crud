@@ -1,26 +1,34 @@
 <div class="card">
-  <h2>Listagem de clientes</h2>
-  <div>
-    <button pButton label="Novo" (click)="onNovo($event)"></button>&nbsp;
+    <h2>Listagem de clientes</h2>
+    <div>
+      <button pButton label="Novo" (click)="onNovo($event)"></button>
+    </div>
+    <p-table [value]="clientes" selectionMode="single" [(selection)]="clienteSelecionado"
+      dataKey="id" (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]=10 
+      [showCurrentPageReport]="true" >
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="id">Código <p-sortIcon field="id"></p-sortIcon>
+          </th>
+          <th pSortableColumn="nome">Nome <p-sortIcon field="nome"></p-sortIcon>
+          </th>
+          <th pSortableColumn="email">E-mail <p-sortIcon field="email"></p-sortIcon>
+          </th>
+          <th></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-cliente>
+        <tr [pSelectableRow]="cliente">
+          <td>{{cliente.id}}</td>
+          <td>{{cliente.nome}}</td>
+          <td>{{cliente.email}}</td>
+          <td>
+            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="onAtualizar($event)"></button>
+            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning p-mr-2" ></button>
+        </td>
+        </tr>
+      </ng-template>
+    </p-table>
   </div>
-  <p-table [value]="clientes" selectionMode="single" [(selection)]="clienteSelecionado"
-    dataKey="id" (onRowSelect)="onRowSelect($event)">
-    <ng-template pTemplate="header">
-      <tr>
-        <th pSortableColumn="id">Código <p-sortIcon field="id"></p-sortIcon>
-        </th>
-        <th pSortableColumn="nome">Nome <p-sortIcon field="nome"></p-sortIcon>
-        </th>
-        <th pSortableColumn="email">E-mail <p-sortIcon field="email"></p-sortIcon>
-        </th>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-cliente>
-      <tr [pSelectableRow]="cliente">
-        <td>{{cliente.id}}</td>
-        <td>{{cliente.nome}}</td>
-        <td>{{cliente.email}}</td>
-      </tr>
-    </ng-template>
-  </p-table>
-</div>
+  
+  
