@@ -111,23 +111,6 @@
         "nome": "Ivan Magalhaes",
         "image": "ivanmagalhaes.png"
       }
-    },
-    {
-      "id": 1009,
-      "nome": "Kris Marrier",
-      "email": "kris_marrier@gmail.com",
-      "country": {
-        "nome": "Mexico",
-        "code": "mx"
-      },
-      "company": "King, Christopher A Esq",
-      "date": "2015-07-07",
-      "status": "proposal",
-      "activity": 3,
-      "representative": {
-        "nome": "Onyama Limba",
-        "image": "onyamalimba.png"
-      }
     }
   ]
 }

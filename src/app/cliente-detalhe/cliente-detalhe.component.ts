@@ -28,7 +28,6 @@ export class ClienteDetalheComponent implements OnInit {
     this.route.paramMap.subscribe(
       (retorno: ParamMap) => {
         const id = retorno.get('id') || '0';
-        console.log("id: \n" + this.id)
         this.id = id;
         if (id === 'new') {
           this.isNew = true;
